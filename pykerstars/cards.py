@@ -46,12 +46,20 @@ class Card(PokerEnum):
 
     for s in list(Suit):
         for r in list(Rank):
-            exec('{0}_{1} = "{2}{3}"'.format(r.enum_name, s.enum_name, str(r), str(s)))
+            exec ('{0}_{1} = {2}'.format(r.enum_name, s.enum_name,
+                                         ",".join(
+                                             ["'%s%s'" % (str(rv), str(sv)) for sv in s.values for rv in r.values])))
+
+    @property
+    def suit(self):
+        return getattr(Suit, self.enum_name.split('_')[1])
+
+    @property
+    def rank(self):
+        return getattr(Rank, self.enum_name.split('_')[0])
 
 
 print list(Suit)
 print list(Rank)
 print list(Card)
-
-for c in list(Card):
-    print c.enum_name
+print Card("5♣").suit
