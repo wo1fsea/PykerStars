@@ -9,7 +9,7 @@ Description:
     cards.py
 ----------------------------------------------------------------------------"""
 
-from utils import PokerEnum
+from pykerstars.utils.pokerenum import PokerEnum
 
 __all__ = ['Suit', 'Rank', 'Card']
 

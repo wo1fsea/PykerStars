@@ -6,10 +6,11 @@ Author:
 Date:
     2017/2/3
 Description:
-    utils.py
+    pokerenum.py
 ----------------------------------------------------------------------------"""
 
 from functools import total_ordering
+
 
 class PokerEnumMeta(type):
     def __new__(mcs, cls, bases, classdict):
@@ -21,7 +22,7 @@ class PokerEnumMeta(type):
 
         enum2value_map = dict([(enum_name,
                                 classdict[enum_name] if isinstance(classdict[enum_name], (tuple, list)) else (
-                                classdict[enum_name],)) for enum_name in enum_names])
+                                    classdict[enum_name],)) for enum_name in enum_names])
         value2enum_map = {}
 
         for name, values in enum2value_map.items():
