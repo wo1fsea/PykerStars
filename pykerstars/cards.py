@@ -57,9 +57,3 @@ class Card(PokerEnum):
     @property
     def rank(self):
         return getattr(Rank, self.enum_name.split('_')[0])
-
-
-print list(Suit)
-print list(Rank)
-print list(Card)
-print Card("5♣").suit
