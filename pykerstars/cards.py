@@ -9,7 +9,7 @@ Description:
     cards.py
 ----------------------------------------------------------------------------"""
 
-from pykerstars.utils.pokerenum import PokerEnum
+from pykerstars.utils.poker_enum import PokerEnum
 
 __all__ = ['Suit', 'Rank', 'Card']
 
@@ -41,14 +41,21 @@ class Rank(PokerEnum):
     ACE = 'A', 1
 
 
+def _values(s, r):
+    values = []
+    for rv in r.values:
+        for sv in s.values:
+            values.append("'%s%s'" % (str(rv), str(sv)))
+    return values
+
+
 class Card(PokerEnum):
     __order__ = " ".join(['{0}_{1}'.format(r.enum_name, s.enum_name) for s in list(Suit) for r in list(Rank)])
 
     for s in list(Suit):
         for r in list(Rank):
-            exec ('{0}_{1} = {2}'.format(r.enum_name, s.enum_name,
-                                         ",".join(
-                                             ["'%s%s'" % (str(rv), str(sv)) for sv in s.values for rv in r.values])))
+            exec('{0}_{1} = {2}'.format(r.enum_name, s.enum_name,
+                                        ",".join(_values(s, r))))
 
     @property
     def suit(self):

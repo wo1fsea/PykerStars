@@ -11,7 +11,7 @@ Description:
 
 import itertools
 
-from pykerstars.utils.pokerenum import PokerEnum
+from pykerstars.utils.poker_enum import PokerEnum
 from cards import Card, Rank, Suit
 
 
@@ -30,7 +30,7 @@ class HandRank(PokerEnum):
 
 
 def is_flush(cards):
-    return len(filter(lambda x: x.suit != cards[0].suit, cards)) == 0
+    return len(list(filter(lambda x: x.suit != cards[0].suit, cards))) == 0
 
 
 def is_straight(ordered_cards):
@@ -61,24 +61,24 @@ def count_rank(cards):
 
 
 def is_four_of_a_kind(rank_count):
-    return len(filter(lambda x: x == 4, rank_count.values())) == 1
+    return len(list(filter(lambda x: x == 4, rank_count.values()))) == 1
 
 
 def is_full_house(rank_count):
-    return len(filter(lambda x: x == 3, rank_count.values())) == 1 and \
-           len(filter(lambda x: x == 2, rank_count.values())) == 1
+    return len(list(filter(lambda x: x == 3, rank_count.values()))) == 1 and \
+           len(list(filter(lambda x: x == 2, rank_count.values()))) == 1
 
 
 def is_three_of_a_kind(rank_count):
-    return len(filter(lambda x: x == 3, rank_count.values())) == 1
+    return len(list(filter(lambda x: x == 3, rank_count.values()))) == 1
 
 
 def is_two_pair(rank_count):
-    return len(filter(lambda x: x == 2, rank_count.values())) == 2
+    return len(list(filter(lambda x: x == 2, rank_count.values()))) == 2
 
 
 def is_one_pair(rank_count):
-    return len(filter(lambda x: x == 2, rank_count.values())) == 1
+    return len(list(filter(lambda x: x == 2, rank_count.values()))) == 1
 
 
 def tell_hand_rank(cards):

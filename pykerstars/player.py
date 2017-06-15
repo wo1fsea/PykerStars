@@ -9,7 +9,7 @@ Description:
     player.py
 ----------------------------------------------------------------------------"""
 
-from pykerstars.utils.pokerenum import PokerEnum
+from pykerstars.utils.poker_enum import PokerEnum
 
 
 class Action(PokerEnum):
